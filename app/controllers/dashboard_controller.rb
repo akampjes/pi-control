@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
     if params[:commit] == 'ON'
       system('echo 0 > /sys/class/gpio/gpio26/value')
     elsif params[:commit] == 'OFF'
-      system('echo 0 > /sys/class/gpio/gpio26/value')
+      system('echo 1 > /sys/class/gpio/gpio26/value')
     end
 
     redirect_to dashboard_path
