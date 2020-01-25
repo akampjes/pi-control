@@ -1,11 +1,11 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.2"
 
-server 'server', roles: [:web, :app, :db], primary: true
+server 'pi@192.168.1.12', roles: [:web, :app, :db], primary: true
 
 set :application, "pi-control"
-set :user, 'pi'
-set :repo_url, "git@github.com:akampjes/pi-control.git"
+set :user,        'pi'
+set :repo_url,    "git@github.com:akampjes/pi-control.git"
 
 set :ssh_options, { forward_agent: true }
 set :puma_threads,    [2, 8]
@@ -44,7 +44,7 @@ set :puma_init_active_record, true # Change to true if using ActiveRecord
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+append :linked_files, 'db/production.sqlite3', 'config/master.key'
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
