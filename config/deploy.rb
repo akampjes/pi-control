@@ -27,6 +27,9 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true # Change to true if using ActiveRecord
 
+set :bundle_jobs, 1
+set :bundle_without, %w{development test}.join(' ')
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -47,7 +50,7 @@ set :puma_init_active_record, true # Change to true if using ActiveRecord
 append :linked_files, 'db/production.sqlite3', 'config/master.key'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", '.bundle'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
