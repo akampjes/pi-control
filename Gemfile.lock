@@ -70,6 +70,8 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
+    capistrano-local-precompile (1.2.0)
+      capistrano (>= 3.8)
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -203,6 +205,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
+  capistrano-local-precompile (~> 1.2.0)
   capistrano-rails
   capistrano-rbenv
   capistrano3-puma

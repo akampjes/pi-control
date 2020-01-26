@@ -15,8 +15,10 @@ require "capistrano/deploy"
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
-require 'capistrano/rails'
-require "capistrano/rails/assets"
+#require 'capistrano/rails'
+# Don't require this because we're going to compile assets on my side
+#require "capistrano/rails/assets"
+require 'capistrano/local_precompile'
 require "capistrano/rails/migrations"
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
