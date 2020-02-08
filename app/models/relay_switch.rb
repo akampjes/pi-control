@@ -1,0 +1,2 @@
+class RelaySwitch < Device
+end
