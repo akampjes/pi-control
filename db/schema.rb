@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_08_003003) do
+ActiveRecord::Schema.define(version: 2020_02_08_202027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "device_logs", force: :cascade do |t|
+    t.bigint "device_id", null: false
+    t.jsonb "data", default: {}, null: false
+    t.index ["device_id"], name: "index_device_logs_on_device_id"
+  end
 
   create_table "devices", force: :cascade do |t|
     t.text "type"
@@ -21,4 +27,5 @@ ActiveRecord::Schema.define(version: 2020_02_08_003003) do
     t.jsonb "configuration", default: {}, null: false
   end
 
+  add_foreign_key "device_logs", "devices"
 end
