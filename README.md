@@ -28,3 +28,8 @@ Run database in development:
 ```
 docker run --name pi-control-postgres -p 5433:5432 -e POSTGRES_PASSWORD/mysecretpassword -d postgres:11.6
 ```
+
+bundle install, without production gems because we can only compile `dht-sensor-ffi` on the RPi
+```
+bundle install --without production
+```

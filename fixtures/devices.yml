@@ -1,9 +1,9 @@
 bedroom_sensor:
   type: TemperatureSensor
   name: Bedroom sensor
-  configuration: {}
+  configuration: { pin: 4, driver: 22 }
 
 playroom_sensor:
   type: TemperatureSensor
   name: Playroom sensor
-  configuration: {}
+  configuration: { pin: 17, driver: 22 }
