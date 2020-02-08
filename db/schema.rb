@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_02_08_003003) do
   create_table "devices", force: :cascade do |t|
     t.text "type"
     t.text "name"
-    t.jsonb "configuration"
+    t.jsonb "configuration", default: {}, null: false
   end
 
 end

@@ -3,7 +3,7 @@ class CreateDevices < ActiveRecord::Migration[6.0]
     create_table :devices do |t|
       t.text :type
       t.text :name
-      t.jsonb :configuration
+      t.jsonb :configuration, :null => false, :default => {}
     end
   end
 end
