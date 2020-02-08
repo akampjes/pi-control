@@ -37,6 +37,8 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
 # append :rbenv_map_bins, 'puma', 'pumactl' # Alternatively we may extend the binmaps
 set :rbenv_roles, :all # default value
 
+set :precompile_env, 'development'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
