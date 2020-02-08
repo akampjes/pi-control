@@ -2,7 +2,10 @@
 # we're running on a RPi
 #
 class DhtSensor
+  DUMMY_TEMP = 22.12
+  DUMMY_HUMIDITY = 43.75
+
   def self.read(pin, driver)
-    OpenStruct(temp: 22.12, humidity: 43.75)
+    OpenStruct.new(temp: DUMMY_TEMP, humidity: DUMMY_HUMIDITY)
   end
 end
