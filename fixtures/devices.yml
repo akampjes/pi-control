@@ -1,0 +1,9 @@
+bedroom_sensor:
+  type: TemperatureSensor
+  name: Bedroom sensor
+  configuration: {}
+
+playroom_sensor:
+  type: TemperatureSensor
+  name: Playroom sensor
+  configuration: {}
