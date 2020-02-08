@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Run database in development:
+```
+docker run --name pi-control-postgres -p 5433:5432 -e POSTGRES_PASSWORD/mysecretpassword -d postgres:11.6
+```
