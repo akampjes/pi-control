@@ -3,4 +3,4 @@
 #
 
 require 'active_record/fixtures'
-ActiveRecord::FixtureSet.create_fixtures(Rails.root.join('fixtures'), 'devices')
+ActiveRecord::FixtureSet.create_fixtures(Rails.root.join('spec', 'fixtures'), 'devices')
