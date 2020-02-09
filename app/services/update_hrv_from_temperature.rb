@@ -8,8 +8,8 @@ class UpdateHrvFromTemperature
   end
 
   def call
-    input_log = @input_sensor.most_recent_first.first
-    output_log = @output_sensor.most_recent_first.first
+    input_log = @input_sensor.device_logs.most_recent_first.first
+    output_log = @output_sensor.device_logs.most_recent_first.first
 
     switch_state = @relay_switch.current_state
 
@@ -24,15 +24,15 @@ class UpdateHrvFromTemperature
     if output_temperature > TARGET_TEMPERATURE && temp_difference < 0
       # It's too warm at the output, and it's cooler at the input
 
-      if switch_state != RelaySwitch.STATE_ON
+      if switch_state != RelaySwitch::STATE_ON
         @relay_switch.on!
-
-        # Early return after switching the HRV on
-        return true
       end
+
+      # Early return after ensuring the HRV is on
+      return true
     end
 
-    if switch_state != RelaySwitch.STATE_OFF
+    if switch_state != RelaySwitch::STATE_OFF
       @relay_switch.off!
     end
   end
