@@ -9,16 +9,15 @@ class RelaySwitch < Device
     system("echo #{pin} > /sys/class/gpio/export")
     sleep(0.5)
 
-    out, err, st = Open3.capture3('cat /sys/class/gpio/gpio26/value')
+    out, err, st = Open3.capture3("cat /sys/class/gpio/gpio#{pin}/value")
 
-    out.chomp
-
-    if out == '1'
+    case out.chomp
+    when '1'
       STATE_OFF
-    elsif out == '0'
+    when '0'
       STATE_ON
     else
-      nil # No current state, must not have been initialised
+      nil
     end
   end
 
