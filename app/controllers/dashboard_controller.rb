@@ -3,16 +3,12 @@ class DashboardController < ApplicationController
   end
 
   def create
-    system('echo 26 > /sys/class/gpio/export')
-    sleep(1) # Sleep because the system takes a tick to update
-
-    system('echo out > /sys/class/gpio/gpio26/direction')
-    sleep(1) # Sleep because the system takes a tick to update
+    switch = RelaySwitch.find_by_name('HRV')
 
     if params[:commit] == 'ON'
-      system('echo 0 > /sys/class/gpio/gpio26/value')
+      switch.on!
     elsif params[:commit] == 'OFF'
-      system('echo 1 > /sys/class/gpio/gpio26/value')
+      switch.off!
     end
 
     redirect_to dashboard_path
