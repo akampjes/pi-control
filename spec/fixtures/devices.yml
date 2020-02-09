@@ -7,3 +7,8 @@ playroom_sensor:
   type: TemperatureSensor
   name: Playroom sensor
   configuration: { pin: 17, driver: 22 }
+
+relay_switch_1:
+  type: RelaySwitch
+  name: HRV
+  configuration: { pin: 26 }
