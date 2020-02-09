@@ -25,7 +25,7 @@ class RelaySwitch < Device
   # calling system commands every time we visit a page.
   #
   def most_recent_state
-    log = DeviceLog.where(device: self).order(created_at: :desc).first
+    log = device_logs.order(created_at: :desc).first
 
     if log
       log.data['state']
