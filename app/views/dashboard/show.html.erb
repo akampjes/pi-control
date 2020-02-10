@@ -1,5 +1,8 @@
 <h1>Welcome to my HRV system</h1>
 
+<p>Input sensor: <%= @input_sensor.device_logs.most_recent_first.first.data['temperature'] %></p>
+<p>Output sensor: <%= @output_sensor.device_logs.most_recent_first.first.data['temperature'] %></p>
+<p>HRV status: <%= @switch.most_recent_state %></p>
 
 <%= form_with url: dashboard_path, method: :post  do |f| %>
   <%= f.submit 'ON' %>
