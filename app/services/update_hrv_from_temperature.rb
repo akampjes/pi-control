@@ -1,5 +1,5 @@
 class UpdateHrvFromTemperature
-  TARGET_TEMPERATURE = 20.0
+  TARGET_TEMPERATURE = 22.0
 
   def initialize(relay_switch:, input_sensor:, output_sensor:)
     @relay_switch = relay_switch
@@ -20,13 +20,14 @@ class UpdateHrvFromTemperature
 
     temp_difference = input_temperature - output_temperature
     # Negative temperature difference means that it's cooler at the input sensor
+    # Positive temperature difference means that it's warmer at the input sensor
     Rails.logger.debug "input_temp: #{input_temperature}"
     Rails.logger.debug "output_temp: #{output_temperature}"
     Rails.logger.debug "temp_diff: #{temp_difference}"
     Rails.logger.debug "switch_state: #{switch_state}"
 
-    if output_temperature > TARGET_TEMPERATURE && temp_difference < 0
-      # It's too warm at the output, and it's cooler at the input
+    if TARGET_TEMPERATURE > output_temperature && temp_difference > 0
+      # It's too cold at the output, and it's warmer at the input
 
       Rails.logger.debug "** here1"
       if switch_state != RelaySwitch::STATE_ON
