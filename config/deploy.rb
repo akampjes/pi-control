@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.2"
 
-server 'pi@192.168.1.12', roles: [:web, :app, :db], primary: true
+server 'pi@192.168.1.116', roles: [:web, :app, :db], primary: true
 
 set :application, "pi-control"
 set :user,        'pi'
