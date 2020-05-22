@@ -13,6 +13,25 @@ class UpdateHrvFromTemperature
 
     switch_state = @relay_switch.current_state
 
+    # If the Pi has been reset, we want to pick up the most
+    # recent state that's been configured.
+    #
+    # If there is no manual override, then we must be on auto mode
+    # and we continue with this method.
+    #
+    case @relay_switch.configuration['state']
+    when RelaySwitch::STATE_ON
+      @relay_switch.on! unless RelaySwitch::STATE_ON
+      return true
+    when RelaySwitch::STATE_OFF
+      @relay_switch.off! unless RelaySwitch::STATE_OFF
+      return true
+    when RelaySwitch::STATE_AUTO
+      # Continue
+    else
+      # NOP
+    end
+
     return unless input_log.present? && output_log.present?
 
     input_temperature = input_log.data['temperature'].to_i

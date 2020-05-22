@@ -9,9 +9,11 @@ class DashboardController < ApplicationController
     switch = RelaySwitch.find_by_name('HRV')
 
     if params[:commit] == 'ON'
-      switch.on!
+      switch.override_on!
     elsif params[:commit] == 'OFF'
-      switch.off!
+      switch.override_off!
+    elsif params[:commit] == 'AUTO'
+      switch.auto!
     end
 
     redirect_to dashboard_path

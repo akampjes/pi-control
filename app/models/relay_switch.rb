@@ -1,6 +1,7 @@
 class RelaySwitch < Device
-  STATE_OFF = 'off'
-  STATE_ON  = 'on'
+  STATE_OFF  = 'off'
+  STATE_ON   = 'on'
+  STATE_AUTO = 'auto'
 
   # Authorative record of the current state
   #
@@ -36,6 +37,20 @@ class RelaySwitch < Device
     end
   end
 
+  def override_on!
+    self.configuration['state'] = STATE_ON
+    self.save!
+
+    self.on!
+  end
+
+  def override_off!
+    self.configuration['state'] = STATE_OFF
+    self.save!
+
+    self.off!
+  end
+
   def on!
     system("echo #{pin} > /sys/class/gpio/export")
     sleep(1) # Sleep because the system takes a tick to update
@@ -58,6 +73,13 @@ class RelaySwitch < Device
     system("echo 1 > /sys/class/gpio/gpio#{pin}/value")
 
     DeviceLog.create!(device: self, data: { state: STATE_OFF })
+  end
+
+  def auto!
+    self.configuration['state'] = STATE_AUTO
+    self.save!
+
+    DeviceLog.create!(device: self, data: { state: STATE_AUTO })
   end
 
   private
